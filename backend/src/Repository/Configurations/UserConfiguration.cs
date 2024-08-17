@@ -1,11 +1,11 @@
-﻿using Core.Entities;
-using Core.Security.Encryption;
+﻿using AutoServiceTracking.Shared.Security.Encryption;
+using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Repository.Configurations;
 
-public class UserConfiguration : BaseEntityTypeConfiguration<User, int>
+public class UserConfiguration : GrandEntityTypeConfiguration<User, int>
 {
     public override void Configure(EntityTypeBuilder<User> builder)
     {
@@ -18,31 +18,6 @@ public class UserConfiguration : BaseEntityTypeConfiguration<User, int>
         builder.Property(u => u.PasswordHash).IsRequired();
         builder.Property(u => u.Status).HasDefaultValue(true);
 
-        builder.HasData(getSeeds());
-    }
-
-    private IEnumerable<User> getSeeds()
-    {
-        List<User> users = new();
-
-        PasswordHelper.CreatePasswordHash(
-            password: "1234",
-            passwordHash: out byte[] passwordHash,
-            passwordSalt: out byte[] passwordSalt
-        );
-        User adminUser =
-            new()
-            {
-                Id = 1,
-                FirstName = "Admin",
-                LastName = "Admin Kaçmaz",
-                Email = "admin@admin.com",
-                Status = true,
-                PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt
-            };
-        users.Add(adminUser);
-
-        return users.ToArray();
+        builder.HasMany(u => u.RefreshTokens);
     }
 }

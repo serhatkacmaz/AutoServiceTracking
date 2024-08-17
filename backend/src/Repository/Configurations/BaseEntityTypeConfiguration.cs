@@ -1,4 +1,4 @@
-﻿using Core.Entities;
+﻿using Core.Entities.Base;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -10,9 +10,8 @@ public abstract class BaseEntityTypeConfiguration<TEntity, TId> : IEntityTypeCon
 {
     public virtual void Configure(EntityTypeBuilder<TEntity> builder)
     {
-        builder.HasKey(e => e.Id);
+        builder.HasKey(x => x.Id);
+        builder.Property(x => x.Id).UseIdentityColumn();
         builder.Property(e => e.Id).IsRequired();
-
-        builder.Property(e => e.CreatedDate).IsRequired();
     }
 }

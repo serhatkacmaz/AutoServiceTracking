@@ -1,6 +1,6 @@
-﻿using Core.Dtos;
-using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Core.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace WebApi.Infrastructure.Filters;
 
@@ -16,7 +16,7 @@ public class ValidateFilterAttribute : ActionFilterAttribute
                 .Select(x => x.ErrorMessage)
                 .ToList();
 
-            context.Result = new BadRequestObjectResult(ResponseDto<NoContentDto>.Fail(StatusCodes.Status400BadRequest, errors));
+            context.Result = new BadRequestObjectResult(RequestResponse<NoContentData>.Fail(StatusCodes.Status400BadRequest, errors));
         }
     }
 }

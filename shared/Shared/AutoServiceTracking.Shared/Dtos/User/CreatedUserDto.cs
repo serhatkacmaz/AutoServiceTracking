@@ -1,4 +1,4 @@
-﻿namespace Core.Dtos.User;
+﻿namespace AutoServiceTracking.Shared.Dtos.User;
 
 public record CreatedUserDto
 {

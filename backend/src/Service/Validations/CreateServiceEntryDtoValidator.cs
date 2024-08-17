@@ -1,4 +1,4 @@
-﻿using Core.Dtos.User;
+﻿using AutoServiceTracking.Shared.Dtos.User;
 using FluentValidation;
 
 namespace Service.Validations;

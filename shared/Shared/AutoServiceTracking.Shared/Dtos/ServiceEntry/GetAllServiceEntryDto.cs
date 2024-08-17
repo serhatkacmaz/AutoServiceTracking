@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace AutoServiceTracking.Shared.Dtos.ServiceEntry;
 
-namespace Core.Dtos.ServiceEntry;
-
-public class GetAllServiceEntryDto
+public record GetAllServiceEntryDto
 {
     public string LicensePlate { get; set; }
 

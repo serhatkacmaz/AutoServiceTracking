@@ -1,13 +1,8 @@
-﻿using Core.Ioc.Repositories;
-using Core.Ioc.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Core.Ioc.Services;
+using Core.Ioc.Services.Auth;
 using Microsoft.Extensions.DependencyInjection;
-using Repositories;
-using Repository.Contexts;
-using Repository.Repositories;
 using Service.Services;
+using Service.Services.Auth;
 using System.Reflection;
 
 namespace Service;
@@ -18,8 +13,11 @@ public static class ServiceLayerRegistration
     {
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
+        services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IAuthTokenService, AuthTokenService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IServiceEntryService, ServiceEntryService>();
+        services.AddScoped<IRefreshTokenService, UserRefreshTokenService>();
 
         return services;
     }

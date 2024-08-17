@@ -1,5 +1,11 @@
+﻿using AutoServiceTracking.Shared.Extensions;
+using AutoServiceTracking.Shared.Security.Jwt;
+using AutoServiceTracking.Shared.Settings;
+using Azure.Core;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
 using Repository;
 using Service;
 using Service.Validations;
@@ -22,12 +28,11 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 builder.Services.AddRepositoryLayerServices(builder.Configuration);
 builder.Services.AddServiceLayerServices();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddAuthServices(builder.Configuration);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-
 
 var app = builder.Build();
 
@@ -41,6 +46,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseGlobalException();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

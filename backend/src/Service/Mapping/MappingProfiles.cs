@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Core.Dtos.ServiceEntry;
-using Core.Dtos.User;
+using AutoServiceTracking.Shared.Dtos.ServiceEntry;
+using AutoServiceTracking.Shared.Dtos.User;
 using Core.Entities;
 
 namespace Service.Mapping;

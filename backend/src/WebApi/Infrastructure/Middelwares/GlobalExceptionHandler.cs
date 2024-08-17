@@ -1,4 +1,4 @@
-﻿using Core.Dtos;
+﻿using Core.Responses;
 using Microsoft.AspNetCore.Diagnostics;
 using Service.Exceptions;
 using System.Text.Json;
@@ -25,7 +25,7 @@ public static class GlobalExceptionHandler
 
                 context.Response.StatusCode = statusCode;
 
-                var response = ResponseDto<NoContentDto>.Fail(statusCode, excepitonFeature.Error.Message);
+                var response = RequestResponse<NoContentData>.Fail(statusCode, excepitonFeature.Error.Message);
                 await context.Response.WriteAsync(JsonSerializer.Serialize(response));
             });
         });

@@ -2,11 +2,6 @@
 using Core.Ioc.Repositories;
 using Core.Ioc.Services;
 using Core.Ioc.UnitOfWorks;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Service.Services;
 

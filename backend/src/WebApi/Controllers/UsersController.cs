@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
-using Core.Dtos;
-using Core.Dtos.User;
+using AutoServiceTracking.Shared.Dtos.User;
 using Core.Entities;
 using Core.Ioc.Services;
-using Microsoft.AspNetCore.Http;
+using Core.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
@@ -21,13 +21,14 @@ public class UsersController : BaseController
         _mapper = mapper;
     }
 
+    [Authorize]
     [HttpGet("Users")]
     public async Task<IActionResult> Users()
     {
         var users = await _userService.GetAllAsync();
         var dtoList = _mapper.Map<IEnumerable<GetAllUserDto>>(users);
 
-        return CreateActionResult(ResponseDto<IEnumerable<GetAllUserDto>>.Success(StatusCodes.Status200OK, dtoList));
+        return CreateActionResult(RequestResponse<IEnumerable<GetAllUserDto>>.Success(StatusCodes.Status200OK, dtoList));
     }
 
     [HttpPost("NewUser")]
@@ -37,6 +38,6 @@ public class UsersController : BaseController
         var createdNewUser = await _userService.AddAsync(newUser);
         var createdNewUserDto = _mapper.Map<CreatedUserDto>(createdNewUser);
 
-        return CreateActionResult(ResponseDto<CreatedUserDto>.Success(StatusCodes.Status200OK, createdNewUserDto));
+        return CreateActionResult(RequestResponse<CreatedUserDto>.Success(StatusCodes.Status200OK, createdNewUserDto));
     }
 }

@@ -1,4 +1,4 @@
-﻿using Core.Entities;
+﻿using Core.Entities.Base;
 using Core.Ioc.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Repository.Contexts;

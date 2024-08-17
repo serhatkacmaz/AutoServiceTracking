@@ -1,4 +1,4 @@
-﻿using Core.Entities;
+﻿using Core.Entities.Base;
 using System.Linq.Expressions;
 
 namespace Core.Ioc.Services;

@@ -1,15 +1,13 @@
-﻿using Core.Dtos;
-using Microsoft.AspNetCore.Http;
+﻿using Core.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
 public class BaseController : ControllerBase
 {
     [NonAction]
-    protected IActionResult CreateActionResult<T>(ResponseDto<T> response)
+    protected IActionResult CreateActionResult<T>(RequestResponse<T> response)
     {
         if (response.StatusCode == 204)
             return new ObjectResult(null) { StatusCode = response.StatusCode };

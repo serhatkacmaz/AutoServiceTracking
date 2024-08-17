@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Repository.Configurations;
 
-public class VehicleServiceConfiguration : BaseEntityTypeConfiguration<ServiceEntry, int>
+public class VehicleServiceConfiguration : GrandEntityTypeConfiguration<ServiceEntry, int>
 {
     public override void Configure(EntityTypeBuilder<ServiceEntry> builder)
     {

@@ -58,10 +58,36 @@ namespace Repository.Migrations
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "RefreshToken",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Expiration = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefreshToken", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RefreshToken_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Email", "FirstName", "LastName", "PasswordHash", "PasswordSalt", "Status", "UpdatedBy", "UpdatedDate" },
-                values: new object[] { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@admin.com", "Admin", "Admin Kaçmaz", new byte[] { 178, 64, 149, 107, 210, 217, 147, 202, 48, 86, 83, 148, 3, 56, 17, 236, 30, 136, 200, 29, 149, 127, 35, 116, 244, 27, 21, 36, 113, 187, 228, 91, 201, 184, 242, 85, 208, 175, 51, 36, 227, 49, 158, 137, 172, 79, 216, 214, 67, 152, 11, 176, 167, 252, 152, 250, 111, 226, 132, 223, 66, 106, 16, 211 }, new byte[] { 14, 205, 67, 194, 45, 90, 239, 197, 197, 20, 108, 218, 234, 167, 174, 103, 112, 97, 181, 4, 148, 175, 35, 71, 159, 79, 181, 204, 15, 225, 73, 38, 175, 49, 13, 254, 102, 181, 183, 198, 165, 168, 68, 51, 178, 230, 103, 96, 140, 97, 113, 96, 176, 103, 60, 248, 203, 87, 234, 106, 121, 255, 88, 118, 49, 23, 123, 15, 155, 191, 240, 73, 247, 210, 113, 53, 109, 39, 233, 237, 131, 72, 189, 126, 253, 38, 125, 205, 154, 72, 104, 127, 194, 206, 79, 79, 226, 122, 106, 248, 5, 160, 242, 218, 54, 49, 109, 128, 136, 132, 68, 129, 153, 143, 202, 61, 128, 205, 30, 221, 46, 48, 99, 28, 128, 104, 182, 249 }, true, null, null });
+                values: new object[] { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@admin.com", "Admin", "Admin Kaçmaz", new byte[] { 61, 68, 64, 66, 77, 83, 223, 159, 56, 111, 149, 5, 27, 103, 46, 204, 185, 210, 29, 197, 147, 150, 225, 20, 135, 84, 30, 140, 7, 200, 53, 207, 163, 236, 98, 178, 37, 64, 218, 9, 54, 177, 184, 183, 35, 168, 111, 22, 99, 77, 233, 187, 201, 69, 151, 159, 148, 251, 109, 68, 32, 19, 155, 171 }, new byte[] { 145, 185, 189, 39, 155, 39, 167, 123, 204, 97, 27, 179, 123, 178, 100, 30, 126, 195, 155, 182, 144, 96, 163, 30, 147, 239, 191, 202, 161, 22, 59, 252, 126, 202, 198, 32, 31, 64, 105, 19, 20, 94, 167, 111, 41, 27, 162, 135, 106, 180, 122, 72, 86, 114, 236, 14, 225, 179, 83, 68, 230, 69, 131, 77, 119, 182, 178, 8, 66, 8, 40, 55, 181, 52, 148, 149, 244, 180, 99, 194, 251, 232, 96, 188, 34, 164, 35, 83, 178, 74, 126, 66, 171, 81, 175, 138, 145, 244, 141, 109, 124, 227, 98, 9, 96, 46, 8, 71, 131, 184, 251, 225, 109, 60, 7, 218, 114, 217, 29, 176, 145, 190, 165, 19, 126, 72, 83, 146 }, true, null, null });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RefreshToken_UserId",
+                table: "RefreshToken",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServiceEntry_LicensePlate",
@@ -72,6 +98,9 @@ namespace Repository.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "RefreshToken");
+
             migrationBuilder.DropTable(
                 name: "ServiceEntries");
 

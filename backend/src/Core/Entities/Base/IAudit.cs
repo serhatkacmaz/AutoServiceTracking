@@ -1,4 +1,4 @@
-﻿namespace Core.Entities;
+﻿namespace Core.Entities.Base;
 
 public interface IAudit
 {

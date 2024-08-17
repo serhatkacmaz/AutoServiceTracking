@@ -1,7 +1,7 @@
 ﻿using Core.Entities;
+using Core.Entities.Base;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using System.Reflection;
 using System.Security.Claims;
 
@@ -19,6 +19,7 @@ public class AutoServiceTrackingContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        base.OnModelCreating(modelBuilder);
     }
 
     #region SaveChanges

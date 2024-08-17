@@ -1,5 +1,4 @@
 ﻿using Core.Ioc.Repositories;
-using Core.Ioc.Services;
 using Core.Ioc.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,9 +21,10 @@ public static class RepositoryLayerRegistration
 
         services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
         services.AddScoped<IUnitOfWork, UnitOfWork>();
-        
+
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IServiceEntryRepository, ServiceEntryRepository>();
+        services.AddScoped<IRefreshTokenRepository, UserRefreshTokenRepository>();
 
 
         return services;

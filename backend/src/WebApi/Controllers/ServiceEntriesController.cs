@@ -1,11 +1,9 @@
 ﻿using AutoMapper;
-using Core.Dtos.User;
-using Core.Dtos;
+using AutoServiceTracking.Shared.Dtos.ServiceEntry;
 using Core.Entities;
 using Core.Ioc.Services;
-using Microsoft.AspNetCore.Http;
+using Core.Responses;
 using Microsoft.AspNetCore.Mvc;
-using Core.Dtos.ServiceEntry;
 
 namespace WebApi.Controllers
 {
@@ -28,7 +26,7 @@ namespace WebApi.Controllers
             var entityList = await _serviceEntryService.GetAllAsync();
             var dtoList = _mapper.Map<IEnumerable<GetAllServiceEntryDto>>(entityList);
 
-            return CreateActionResult(ResponseDto<IEnumerable<GetAllServiceEntryDto>>.Success(StatusCodes.Status200OK, dtoList));
+            return CreateActionResult(RequestResponse<IEnumerable<GetAllServiceEntryDto>>.Success(StatusCodes.Status200OK, dtoList));
         }
 
         [HttpPost("AddServiceEntry")]
@@ -38,7 +36,7 @@ namespace WebApi.Controllers
             var createdNewEntity = await _serviceEntryService.AddAsync(newEntity);
             var createdNewEntityDto = _mapper.Map<CreatedServiceEntryDto>(createdNewEntity);
 
-            return CreateActionResult(ResponseDto<CreatedServiceEntryDto>.Success(StatusCodes.Status200OK, createdNewEntityDto));
+            return CreateActionResult(RequestResponse<CreatedServiceEntryDto>.Success(StatusCodes.Status200OK, createdNewEntityDto));
         }
     }
 }

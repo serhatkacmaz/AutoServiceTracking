@@ -1,6 +1,6 @@
-﻿namespace Core.Dtos.ServiceEntry;
+﻿namespace AutoServiceTracking.Shared.Dtos.ServiceEntry;
 
-public class CreatedServiceEntryDto
+public record CreatedServiceEntryDto
 {
     public string LicensePlate { get; set; }
 

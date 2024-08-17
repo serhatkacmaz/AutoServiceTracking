@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Core.Entities;
+﻿using Core.Entities.Base;
 using Core.Ioc.Repositories;
 using Core.Ioc.Services;
 using Core.Ioc.UnitOfWorks;
