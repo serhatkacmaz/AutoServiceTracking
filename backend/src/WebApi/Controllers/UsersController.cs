@@ -2,7 +2,7 @@
 using AutoServiceTracking.Shared.Dtos.User;
 using Core.Entities;
 using Core.Ioc.Services;
-using Core.Responses;
+using AutoServiceTracking.Shared.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

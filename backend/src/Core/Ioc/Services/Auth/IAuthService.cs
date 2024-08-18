@@ -1,5 +1,5 @@
 ﻿using AutoServiceTracking.Shared.Dtos.Auth;
-using Core.Responses;
+using AutoServiceTracking.Shared.Responses;
 
 namespace Core.Ioc.Services.Auth;
 

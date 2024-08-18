@@ -10,12 +10,6 @@ internal class UserSeed : IEntityTypeConfiguration<User>
     public void Configure(EntityTypeBuilder<User> builder)
     {
         List<User> users = new();
-
-        PasswordHelper.CreatePasswordHash(
-            password: "Test123",
-            passwordHash: out byte[] passwordHash,
-            passwordSalt: out byte[] passwordSalt
-        );
         User adminUser =
             new()
             {
@@ -24,8 +18,7 @@ internal class UserSeed : IEntityTypeConfiguration<User>
                 LastName = "Admin Kaçmaz",
                 Email = "admin@admin.com",
                 Status = true,
-                PasswordHash = passwordHash,
-                PasswordSalt = passwordSalt
+                Password = "1234",
             };
         users.Add(adminUser);
 

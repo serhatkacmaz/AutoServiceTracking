@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\shared\Shared\AutoServiceTracking.Shared\AutoServiceTracking.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

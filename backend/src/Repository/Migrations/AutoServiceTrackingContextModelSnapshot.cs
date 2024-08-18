@@ -17,7 +17,7 @@ namespace Repository.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "7.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -135,13 +135,9 @@ namespace Repository.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("PasswordHash")
+                    b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<byte[]>("PasswordSalt")
-                        .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Status")
                         .ValueGeneratedOnAdd()
@@ -166,8 +162,7 @@ namespace Repository.Migrations
                             Email = "admin@admin.com",
                             FirstName = "Admin",
                             LastName = "Admin Kaçmaz",
-                            PasswordHash = new byte[] { 61, 68, 64, 66, 77, 83, 223, 159, 56, 111, 149, 5, 27, 103, 46, 204, 185, 210, 29, 197, 147, 150, 225, 20, 135, 84, 30, 140, 7, 200, 53, 207, 163, 236, 98, 178, 37, 64, 218, 9, 54, 177, 184, 183, 35, 168, 111, 22, 99, 77, 233, 187, 201, 69, 151, 159, 148, 251, 109, 68, 32, 19, 155, 171 },
-                            PasswordSalt = new byte[] { 145, 185, 189, 39, 155, 39, 167, 123, 204, 97, 27, 179, 123, 178, 100, 30, 126, 195, 155, 182, 144, 96, 163, 30, 147, 239, 191, 202, 161, 22, 59, 252, 126, 202, 198, 32, 31, 64, 105, 19, 20, 94, 167, 111, 41, 27, 162, 135, 106, 180, 122, 72, 86, 114, 236, 14, 225, 179, 83, 68, 230, 69, 131, 77, 119, 182, 178, 8, 66, 8, 40, 55, 181, 52, 148, 149, 244, 180, 99, 194, 251, 232, 96, 188, 34, 164, 35, 83, 178, 74, 126, 66, 171, 81, 175, 138, 145, 244, 141, 109, 124, 227, 98, 9, 96, 46, 8, 71, 131, 184, 251, 225, 109, 60, 7, 218, 114, 217, 29, 176, 145, 190, 165, 19, 126, 72, 83, 146 },
+                            Password = "1234",
                             Status = true
                         });
                 });

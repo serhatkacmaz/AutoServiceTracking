@@ -27,16 +27,16 @@ namespace WebApi.Controllers
         [HttpPost]
         [Route("CreateTokenByRefreshToken")]
         [AllowAnonymous]
-        public async Task<IActionResult> CreateTokenByRefreshToken(RefreshTokenDto refreshTokenDto)
+        public async Task<IActionResult> CreateTokenByRefreshToken(RefreshJwtDto refreshJwtDto)
         {
-            return CreateActionResult(await _authService.CreateTokenByRefreshTokenAsync(refreshTokenDto.Token));
+            return CreateActionResult(await _authService.CreateTokenByRefreshTokenAsync(refreshJwtDto.Token));
         }
 
         [HttpPost]
         [Route("RevokeRefreshToken")]
-        public async Task<IActionResult> RevokeRefreshToken(RefreshTokenDto refreshTokenDto)
+        public async Task<IActionResult> RevokeRefreshToken(RefreshJwtDto refreshJwtDto)
         {
-            return CreateActionResult(await _authService.RevokeRefreshTokenAsync(refreshTokenDto.Token));
+            return CreateActionResult(await _authService.RevokeRefreshTokenAsync(refreshJwtDto.Token));
         }
     }
 }

@@ -4,7 +4,7 @@ using Core.Entities;
 using Core.Ioc.Repositories;
 using Core.Ioc.Services.Auth;
 using Core.Ioc.UnitOfWorks;
-using Core.Responses;
+using AutoServiceTracking.Shared.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 namespace Service.Services.Auth;
@@ -34,9 +34,7 @@ public class AuthService : IAuthService
         if (user == null)
             return RequestResponse<JwtDto>.Fail(StatusCodes.Status400BadRequest, "Mail or Password is wrong");
 
-        bool isPasswordValid = PasswordHelper.VerifyPasswordHash(signInDto.Password, user.PasswordHash, user.PasswordSalt);
-
-        if (isPasswordValid)
+        if (user.Password != signInDto.Password)
             return RequestResponse<JwtDto>.Fail(StatusCodes.Status400BadRequest, "Mail or Password is wrong");
 
         if (!user.Status)

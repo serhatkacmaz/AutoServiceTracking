@@ -1,4 +1,4 @@
-﻿using Core.Responses;
+﻿using AutoServiceTracking.Shared.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
