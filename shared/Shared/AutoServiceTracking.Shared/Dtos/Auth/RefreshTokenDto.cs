@@ -1,6 +1,6 @@
 ﻿namespace AutoServiceTracking.Shared.Dtos.Auth;
 
-public class RefreshTokenDto
+public record RefreshTokenDto
 {
-    public string Token { get; set; }
+    public string Token { get; set; } = null!;
 }

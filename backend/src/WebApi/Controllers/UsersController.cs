@@ -34,6 +34,8 @@ public class UsersController : BaseController
     [HttpPost("NewUser")]
     public async Task<IActionResult> NewUser([FromBody] CreateUserDto createUserDto)
     {
+        //Şifreyi Hashle
+        //Seed'dakinde sıkıntı var...
         var newUser = _mapper.Map<User>(createUserDto);
         var createdNewUser = await _userService.AddAsync(newUser);
         var createdNewUserDto = _mapper.Map<CreatedUserDto>(createdNewUser);
