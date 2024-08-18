@@ -1,4 +1,5 @@
-﻿using AutoServiceTracking.Shared.Responses;
+﻿using AutoServiceTracking.Shared.Dtos.ServiceEntry;
+using AutoServiceTracking.Shared.Responses;
 
 namespace AutoServiceTracking.Web.Dashboard.Infrastructure.ApiServices
 {
@@ -11,5 +12,10 @@ namespace AutoServiceTracking.Web.Dashboard.Infrastructure.ApiServices
             _httpClient = httpClient;
         }
 
+        public async Task<RequestResponse<CreateServiceEntryDto>> AddServiceEntry(CreateServiceEntryDto dto)
+        {
+            var response = await _httpClient.PostAsJsonAsync("ServiceEntries/AddServiceEntry", dto);
+            return await response.Content.ReadFromJsonAsync<RequestResponse<CreateServiceEntryDto>>();
+        }
     }
 }

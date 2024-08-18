@@ -1,0 +1,98 @@
+﻿@using AutoServiceTracking.Shared.Dtos.ServiceEntry
+@model CreateServiceEntryDto
+
+@{
+    ViewData["Title"] = "Servis Girişi Ekle";
+
+    int currentYear = DateTime.Now.Year;
+}
+
+@using (Html.BeginForm())
+{
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-body">
+                        <div class="form-group">
+                           @Html.LabelFor(x => x.LicensePlate, "Plaka", new { @class = "control-label" })
+                           @Html.EditorFor(x => x.LicensePlate, new { htmlAttributes = new { @class = "form-control", maxlength = "8" } })
+                           @Html.ValidationMessageFor(x => x.LicensePlate, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.BrandName, "Marka", new { @class = "control-label" })
+                            @Html.EditorFor(x => x.BrandName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(x => x.BrandName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.ModelName, "Model", new { @class = "control-label" })
+                            @Html.EditorFor(x => x.ModelName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(x => x.ModelName, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.Kilometers, "KM", new { @class = "control-label" })
+                            @Html.EditorFor(x => x.Kilometers, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                            @Html.ValidationMessageFor(x => x.Kilometers, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.ModelYear, "Model Yılı", new { @class = "control-label" })
+                            @Html.EditorFor(x => x.ModelYear, new { htmlAttributes = new { @class = "form-control", type = "number", min = "1000", max = currentYear, oninput = "this.value=this.value.slice(0,4)" } })
+                            @Html.ValidationMessageFor(x => x.ModelYear, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.ServiceDate, "Servise Geliş Tarihi", new { @class = "control-label" })
+                            @Html.EditorFor(x => x.ServiceDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                            @Html.ValidationMessageFor(x => x.ServiceDate, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.Label(null, "Garantisi Var mı?", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.DropDownListFor(x => x.HasWarranty, new List<SelectListItem>
+                        {
+                        new SelectListItem { Text = "Var", Value = "true" },
+                        new SelectListItem { Text = "Yok", Value = "false" }
+                        }, null, new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.ServiceCity, "Servis Hizmeti Alınan Şehir", new { @class = "control-label"})
+                            @Html.EditorFor(x => x.ServiceCity, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(x => x.ServiceCity, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(x => x.ServiceNotes, "Servis Notu", new { @class = "control-label" })
+                            @Html.TextAreaFor(x => x.ServiceNotes, new { htmlAttributes = new { @class = "form-control", @style = "width: 100%; height: 150px;" } })
+                            @Html.ValidationMessageFor(x => x.ServiceNotes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-12">
+                <input type="submit" value="Servis Girişi Ekle" class="btn btn-success float-right">
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+}
+
+@section Scripts {
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            var today = new Date().toISOString().split('T')[0];
+            document.querySelector('input[name="ServiceDate"]').value = today;
+        });
+    </script>
+}

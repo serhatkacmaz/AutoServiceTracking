@@ -10,6 +10,10 @@ public record CreatedServiceEntryDto
 
     public DateTime ServiceDate { get; set; }
 
+    public CreatedServiceEntryDto()
+    {
+        
+    }
     public CreatedServiceEntryDto(string licensePlate, string brandName, string modelName, DateTime serviceDate)
     {
         LicensePlate = licensePlate;

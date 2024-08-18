@@ -1,6 +1,6 @@
 ﻿namespace AutoServiceTracking.Shared.Dtos.ServiceEntry;
 
-public record CreateServiceEntryDto
+public class CreateServiceEntryDto
 {
     public string LicensePlate { get; set; }
 
@@ -12,13 +12,18 @@ public record CreateServiceEntryDto
 
     public int? ModelYear { get; set; }
 
-    public DateTime ServiceDate { get; set; }
+    public DateTime ServiceDate { get; set; } 
 
     public bool? HasWarranty { get; set; }
 
     public string? ServiceCity { get; set; }
 
     public string? ServiceNotes { get; set; }
+
+    public CreateServiceEntryDto()
+    {
+
+    }
 
     public CreateServiceEntryDto(string licensePlate, string brandName, string modelName, int kilometers, int? modelYear, DateTime serviceDate, bool? hasWarranty, string? serviceCity, string? serviceNotes)
     {
