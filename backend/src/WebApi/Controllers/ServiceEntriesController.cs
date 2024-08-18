@@ -5,34 +5,33 @@ using Core.Entities;
 using Core.Ioc.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApi.Controllers
+namespace WebApi.Controllers;
+
+public class ServiceEntriesController : BaseController
 {
-    public class ServiceEntriesController : BaseController
+    private readonly IServiceEntryService _serviceEntryService;
+    private readonly IMapper _mapper;
+
+    public ServiceEntriesController(IServiceEntryService serviceEntryService, IMapper mapper)
     {
-        private readonly IServiceEntryService _serviceEntryService;
-        private readonly IMapper _mapper;
+        _serviceEntryService = serviceEntryService;
+        _mapper = mapper;
+    }
 
-        public ServiceEntriesController(IServiceEntryService serviceEntryService, IMapper mapper)
-        {
-            _serviceEntryService = serviceEntryService;
-            _mapper = mapper;
-        }
+    [HttpGet("GetServiceEntries")]
+    public async Task<IActionResult> GetServiceEntries()
+    {
+        var dtoList = await _serviceEntryService.GetServiceEntriesByProcedureAsync();
+        return CreateActionResult(RequestResponse<IEnumerable<ServiceEntriesProcedureDto>>.Success(StatusCodes.Status200OK, dtoList));
+    }
 
-        [HttpGet("GetServiceEntries")]
-        public async Task<IActionResult> GetServiceEntries()
-        {
-            var dtoList = await _serviceEntryService.GetServiceEntriesByProcedureAsync();
-            return CreateActionResult(RequestResponse<IEnumerable<ServiceEntriesProcedureDto>>.Success(StatusCodes.Status200OK, dtoList));
-        }
+    [HttpPost("AddServiceEntry")]
+    public async Task<IActionResult> AddServiceEntry([FromBody] CreateServiceEntryDto createServiceEntryDto)
+    {
+        var newEntity = _mapper.Map<ServiceEntry>(createServiceEntryDto);
+        var createdNewEntity = await _serviceEntryService.AddAsync(newEntity);
+        var createdNewEntityDto = _mapper.Map<CreatedServiceEntryDto>(createdNewEntity);
 
-        [HttpPost("AddServiceEntry")]
-        public async Task<IActionResult> AddServiceEntry([FromBody] CreateServiceEntryDto createServiceEntryDto)
-        {
-            var newEntity = _mapper.Map<ServiceEntry>(createServiceEntryDto);
-            var createdNewEntity = await _serviceEntryService.AddAsync(newEntity);
-            var createdNewEntityDto = _mapper.Map<CreatedServiceEntryDto>(createdNewEntity);
-
-            return CreateActionResult(RequestResponse<CreatedServiceEntryDto>.Success(StatusCodes.Status200OK, createdNewEntityDto));
-        }
+        return CreateActionResult(RequestResponse<CreatedServiceEntryDto>.Success(StatusCodes.Status200OK, createdNewEntityDto));
     }
 }

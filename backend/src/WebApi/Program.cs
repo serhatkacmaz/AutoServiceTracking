@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Repository;
 using Service;
+using Integrations;
 using Service.Validations;
 using WebApi.Infrastructure.Filters;
 using WebApi.Infrastructure.Middelwares;
@@ -25,6 +26,7 @@ builder.Services.AddRepositoryLayerServices(builder.Configuration);
 builder.Services.AddServiceLayerServices();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddAuthServices(builder.Configuration);
+builder.Services.AddIntegrationsLayerServices();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
