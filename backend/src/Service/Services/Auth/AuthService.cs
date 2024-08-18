@@ -1,10 +1,10 @@
 ﻿using AutoServiceTracking.Shared.Dtos.Auth;
+using AutoServiceTracking.Shared.Responses;
 using AutoServiceTracking.Shared.Security.Encryption;
 using Core.Entities;
 using Core.Ioc.Repositories;
 using Core.Ioc.Services.Auth;
 using Core.Ioc.UnitOfWorks;
-using AutoServiceTracking.Shared.Responses;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 namespace Service.Services.Auth;
@@ -34,7 +34,7 @@ public class AuthService : IAuthService
         if (user == null)
             return RequestResponse<JwtDto>.Fail(StatusCodes.Status400BadRequest, "Mail or Password is wrong");
 
-        if (user.Password != signInDto.Password)
+        if (!PasswordHelper.VerifyPassword(signInDto.Password, user.Password))
             return RequestResponse<JwtDto>.Fail(StatusCodes.Status400BadRequest, "Mail or Password is wrong");
 
         if (!user.Status)

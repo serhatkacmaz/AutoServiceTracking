@@ -12,7 +12,7 @@ using Repository.Contexts;
 namespace Repository.Migrations
 {
     [DbContext(typeof(AutoServiceTrackingContext))]
-    [Migration("20240818143121_ver_001")]
+    [Migration("20240818152821_ver_001")]
     partial class ver_001
     {
         /// <inheritdoc />
@@ -78,8 +78,8 @@ namespace Repository.Migrations
 
                     b.Property<string>("LicensePlate")
                         .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("ModelName")
                         .IsRequired()
@@ -107,6 +107,7 @@ namespace Repository.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("LicensePlate")
+                        .IsUnique()
                         .HasDatabaseName("IX_ServiceEntry_LicensePlate");
 
                     b.ToTable("ServiceEntries");
@@ -128,7 +129,7 @@ namespace Repository.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -155,17 +156,20 @@ namespace Repository.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
                     b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedDate = new DateTime(2024, 8, 18, 18, 28, 20, 995, DateTimeKind.Local).AddTicks(5303),
                             Email = "admin@admin.com",
                             FirstName = "Admin",
                             LastName = "Admin Kaçmaz",
-                            Password = "1234",
+                            Password = "7110eda4d09e062aa5e4a390b0a572ac0d2c0220",
                             Status = true
                         });
                 });

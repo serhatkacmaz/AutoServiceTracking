@@ -1,5 +1,4 @@
-﻿using AutoServiceTracking.Shared.Dtos.ServiceEntry;
-using AutoServiceTracking.Shared.Models;
+﻿using AutoServiceTracking.Shared.Models;
 using Core.Entities;
 using Core.Ioc.Repositories;
 using Microsoft.EntityFrameworkCore;

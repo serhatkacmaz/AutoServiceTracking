@@ -12,11 +12,13 @@ public class VehicleServiceConfiguration : GrandEntityTypeConfiguration<ServiceE
 
         builder.Property(vs => vs.LicensePlate)
                .IsRequired()
-               .HasMaxLength(10);
+               .HasMaxLength(8);
 
         // Index
         builder.HasIndex(vs => vs.LicensePlate)
             .HasDatabaseName("IX_ServiceEntry_LicensePlate");
+
+        builder.HasIndex(u => u.LicensePlate).IsUnique();
 
         builder.Property(vs => vs.BrandName)
                .IsRequired()

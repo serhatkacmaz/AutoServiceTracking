@@ -62,12 +62,12 @@ public class AutoServiceTrackingContext : DbContext
                 if (entry.State == EntityState.Added)
                 {
                     entity.CreatedBy = userId != null ? int.Parse(userId) : null;
-                    entity.CreatedDate = DateTime.UtcNow;
+                    entity.CreatedDate = DateTime.Now;
                 }
                 else if (entry.State == EntityState.Modified)
                 {
                     entity.UpdatedBy = userId != null ? int.Parse(userId) : null;
-                    entity.UpdatedDate = DateTime.UtcNow;
+                    entity.UpdatedDate = DateTime.Now;
                 }
             }
         }

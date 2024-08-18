@@ -22,7 +22,7 @@ public class ServiceEntryService : GenericService<ServiceEntry, int>, IServiceEn
     {
         var modelList = await _serviceEntryRepository.GetServiceEntriesByProcedureAsync();
         var dtoList = _mapper.Map<IEnumerable<ServiceEntriesProcedureDto>>(modelList);
-        
+
         return dtoList;
     }
 }

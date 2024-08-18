@@ -1,15 +1,12 @@
 ﻿using AutoMapper;
 using AutoServiceTracking.Shared.Dtos.User;
+using AutoServiceTracking.Shared.Responses;
 using Core.Entities;
 using Core.Ioc.Services;
-using AutoServiceTracking.Shared.Responses;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
 public class UsersController : BaseController
 {
     private readonly IUserService _userService;
@@ -21,7 +18,6 @@ public class UsersController : BaseController
         _mapper = mapper;
     }
 
-    [Authorize]
     [HttpGet("Users")]
     public async Task<IActionResult> Users()
     {

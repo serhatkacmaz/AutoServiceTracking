@@ -2,12 +2,13 @@
 using AutoServiceTracking.Web.Dashboard.Infrastructure.ApiServices;
 using AutoServiceTracking.Web.Dashboard.Infrastructure.Constants;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace AutoServiceTracking.Web.Dashboard.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController : BaseController
     {
         private readonly AuthApiService _authApiService;
 
@@ -17,6 +18,7 @@ namespace AutoServiceTracking.Web.Dashboard.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
@@ -28,6 +30,7 @@ namespace AutoServiceTracking.Web.Dashboard.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] SignInDto sigInDto)
         {
             var result = await _authApiService.CreateTokenAsync(sigInDto);

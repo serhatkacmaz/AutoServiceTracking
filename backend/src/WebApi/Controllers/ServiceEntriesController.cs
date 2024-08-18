@@ -1,14 +1,12 @@
 ﻿using AutoMapper;
 using AutoServiceTracking.Shared.Dtos.ServiceEntry;
+using AutoServiceTracking.Shared.Responses;
 using Core.Entities;
 using Core.Ioc.Services;
-using AutoServiceTracking.Shared.Responses;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
     public class ServiceEntriesController : BaseController
     {
         private readonly IServiceEntryService _serviceEntryService;

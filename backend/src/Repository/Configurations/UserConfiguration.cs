@@ -16,6 +16,9 @@ public class UserConfiguration : GrandEntityTypeConfiguration<User, int>
         builder.Property(u => u.Password).IsRequired();
         builder.Property(u => u.Status).HasDefaultValue(true);
 
+        // Index
+        builder.HasIndex(u => u.Email).IsUnique();
+
         builder.HasMany(u => u.RefreshTokens);
     }
 }

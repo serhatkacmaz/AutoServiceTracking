@@ -1,12 +1,11 @@
-﻿using AutoServiceTracking.Shared.Dtos.Auth;
-using AutoServiceTracking.Shared.Dtos.ServiceEntry;
+﻿using AutoServiceTracking.Shared.Dtos.ServiceEntry;
 using AutoServiceTracking.Web.Dashboard.Infrastructure.ApiServices;
 using AutoServiceTracking.Web.Dashboard.Infrastructure.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoServiceTracking.Web.Dashboard.Controllers
 {
-    public class ServiceEntryController : Controller
+    public class ServiceEntryController : BaseController
     {
         private readonly ServiceEntryService _serviceEntryService;
 

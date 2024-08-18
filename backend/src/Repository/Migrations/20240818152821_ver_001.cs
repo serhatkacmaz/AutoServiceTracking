@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -17,7 +16,7 @@ namespace Repository.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LicensePlate = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    LicensePlate = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: false),
                     BrandName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     ModelName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Kilometers = table.Column<int>(type: "int", nullable: false),
@@ -44,7 +43,7 @@ namespace Repository.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false, defaultValue: true),
                     CreatedBy = table.Column<int>(type: "int", nullable: true),
@@ -81,7 +80,7 @@ namespace Repository.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Email", "FirstName", "LastName", "Password", "Status", "UpdatedBy", "UpdatedDate" },
-                values: new object[] { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "admin@admin.com", "Admin", "Admin Kaçmaz", "1234", true, null, null });
+                values: new object[] { 1, null, new DateTime(2024, 8, 18, 18, 28, 20, 995, DateTimeKind.Local).AddTicks(5303), "admin@admin.com", "Admin", "Admin Kaçmaz", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", true, null, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_RefreshToken_UserId",
@@ -91,7 +90,14 @@ namespace Repository.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ServiceEntry_LicensePlate",
                 table: "ServiceEntries",
-                column: "LicensePlate");
+                column: "LicensePlate",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Email",
+                table: "Users",
+                column: "Email",
+                unique: true);
         }
 
         /// <inheritdoc />

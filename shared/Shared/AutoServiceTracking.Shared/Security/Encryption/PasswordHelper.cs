@@ -5,19 +5,19 @@ namespace AutoServiceTracking.Shared.Security.Encryption;
 
 public static class PasswordHelper
 {
-    public static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+    public static string HashPassword(string password)
     {
-        using HMACSHA512 hMACSHA512 = new HMACSHA512();
-
-        passwordSalt = hMACSHA512.Key;
-        passwordHash = hMACSHA512.ComputeHash(Encoding.UTF8.GetBytes(password));
+        using (SHA1 sha1 = SHA1.Create())
+        {
+            byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+            byte[] hashBytes = sha1.ComputeHash(passwordBytes);
+            return BitConverter.ToString(hashBytes).Replace("-", "").ToLowerInvariant();
+        }
     }
 
-    public static bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
+    public static bool VerifyPassword(string password, string hash)
     {
-        using HMACSHA512 hMACSHA512 = new HMACSHA512(storedSalt);
-
-        byte[] computedHash = hMACSHA512.ComputeHash(Encoding.UTF8.GetBytes(password));
-        return computedHash.SequenceEqual(storedHash);
+        string passwordHash = HashPassword(password);
+        return passwordHash == hash;
     }
 }

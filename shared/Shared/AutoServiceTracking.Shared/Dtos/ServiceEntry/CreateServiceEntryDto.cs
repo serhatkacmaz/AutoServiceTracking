@@ -12,7 +12,7 @@ public class CreateServiceEntryDto
 
     public int? ModelYear { get; set; }
 
-    public DateTime ServiceDate { get; set; } 
+    public DateTime ServiceDate { get; set; }
 
     public bool? HasWarranty { get; set; }
 

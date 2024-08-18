@@ -1,5 +1,4 @@
-﻿using AutoServiceTracking.Shared.Security.Encryption;
-using Core.Entities;
+﻿using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -18,7 +17,8 @@ internal class UserSeed : IEntityTypeConfiguration<User>
                 LastName = "Admin Kaçmaz",
                 Email = "admin@admin.com",
                 Status = true,
-                Password = "1234",
+                Password = "7110eda4d09e062aa5e4a390b0a572ac0d2c0220",
+                CreatedDate = DateTime.Now,
             };
         users.Add(adminUser);
 

@@ -1,13 +1,13 @@
+using AutoServiceTracking.Shared.Extensions;
 using AutoServiceTracking.Web.Dashboard.Infrastructure.ApiServices;
 using AutoServiceTracking.Web.Dashboard.Infrastructure.Middlewares;
-using AutoServiceTracking.Shared.Extensions;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddHttpContextAccessor();
 
 //API BaseUrl
 builder.Services.AddHttpClient<AuthApiService>(opt =>
