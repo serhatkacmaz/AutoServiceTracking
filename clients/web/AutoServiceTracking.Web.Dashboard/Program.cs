@@ -20,6 +20,11 @@ builder.Services.AddHttpClient<ServiceEntryService>(opt =>
     opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
 });
 
+builder.Services.AddHttpClient<CountriesNowService>(opt =>
+{
+    opt.BaseAddress = new Uri(builder.Configuration["BaseUrl"]);
+});
+
 builder.Services.AddAuthServices(builder.Configuration);
 
 builder.Services.AddSession();

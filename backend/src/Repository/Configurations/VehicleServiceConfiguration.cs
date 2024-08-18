@@ -18,8 +18,6 @@ public class VehicleServiceConfiguration : GrandEntityTypeConfiguration<ServiceE
         builder.HasIndex(vs => vs.LicensePlate)
             .HasDatabaseName("IX_ServiceEntry_LicensePlate");
 
-        builder.HasIndex(u => u.LicensePlate).IsUnique();
-
         builder.Property(vs => vs.BrandName)
                .IsRequired()
                .HasMaxLength(100);
