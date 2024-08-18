@@ -12,7 +12,7 @@ using Repository.Contexts;
 namespace Repository.Migrations
 {
     [DbContext(typeof(AutoServiceTrackingContext))]
-    [Migration("20240818084359_ver_001")]
+    [Migration("20240818143121_ver_001")]
     partial class ver_001
     {
         /// <inheritdoc />

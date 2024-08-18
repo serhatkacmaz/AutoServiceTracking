@@ -10,7 +10,7 @@ public class User : GrandEntity<int>
     public string LastName { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
-    public bool Status { get; set; }
+    public bool Status { get; set; } = true;
 
     public virtual ICollection<RefreshToken> RefreshTokens { get; set; } = null!;
 

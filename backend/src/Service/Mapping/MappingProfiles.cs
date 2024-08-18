@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoServiceTracking.Shared.Dtos.ServiceEntry;
 using AutoServiceTracking.Shared.Dtos.User;
+using AutoServiceTracking.Shared.Models;
 using Core.Entities;
 
 namespace Service.Mapping;
@@ -15,6 +16,8 @@ public class MappingProfiles : Profile
 
         CreateMap<ServiceEntry, CreateServiceEntryDto>().ReverseMap();
         CreateMap<ServiceEntry, CreatedServiceEntryDto>().ReverseMap();
-        CreateMap<ServiceEntry, GetAllServiceEntryDto>();
+        CreateMap<ServiceEntry, GetListServiceEntryDto>();
+
+        CreateMap<ServiceEntriesProcedureModel, ServiceEntriesProcedureDto>().ReverseMap();
     }
 }

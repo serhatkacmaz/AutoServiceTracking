@@ -17,5 +17,11 @@ namespace AutoServiceTracking.Web.Dashboard.Infrastructure.ApiServices
             var response = await _httpClient.PostAsJsonAsync("ServiceEntries/AddServiceEntry", dto);
             return await response.Content.ReadFromJsonAsync<RequestResponse<CreateServiceEntryDto>>();
         }
+
+        public async Task<List<ServiceEntriesProcedureDto>> GetServiceEntries()
+        {
+            var response = await _httpClient.GetFromJsonAsync<RequestResponse<List<ServiceEntriesProcedureDto>>>("ServiceEntries/GetServiceEntries");
+            return response.Data;
+        }
     }
 }

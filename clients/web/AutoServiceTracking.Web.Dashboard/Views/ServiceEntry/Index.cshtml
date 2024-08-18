@@ -1,7 +1,40 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using AutoServiceTracking.Shared.Dtos.ServiceEntry
+@model List<ServiceEntriesProcedureDto>
+
 @{
-    ViewData["Title"] = "Servis Geçmişi Listesi";
+    ViewData["Title"] = "Servis Tablosu";
 }
 
+<div class="container mt-4">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Plaka</th>
+                <th>Marka</th>
+                <th>Model</th>
+                <th>Kilometre</th>
+                <th>Model Yılı</th>
+                <th>Servis Tarihi</th>
+                <th>Garanti Durumu</th>
+                <th>Servis Şehri</th>
+                <th>Servis Notları</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.LicensePlate</td>
+                    <td>@item.BrandName</td>
+                    <td>@item.ModelName</td>
+                    <td>@item.Kilometers</td>
+                    <td>@item.ModelYear</td>
+                    <td>@item.ServiceDate</td>
+                    <td>@item.HasWarranty</td>
+                    <td>@item.ServiceCity</td>
+                    <td>@item.ServiceNotes</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

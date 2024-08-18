@@ -16,9 +16,10 @@ namespace AutoServiceTracking.Web.Dashboard.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await _serviceEntryService.GetServiceEntries();
+            return View(model);
         }
 
         [HttpGet]

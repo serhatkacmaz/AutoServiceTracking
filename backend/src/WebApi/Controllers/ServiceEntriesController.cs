@@ -23,10 +23,8 @@ namespace WebApi.Controllers
         [HttpGet("GetServiceEntries")]
         public async Task<IActionResult> GetServiceEntries()
         {
-            var entityList = await _serviceEntryService.GetAllAsync();
-            var dtoList = _mapper.Map<IEnumerable<GetAllServiceEntryDto>>(entityList);
-
-            return CreateActionResult(RequestResponse<IEnumerable<GetAllServiceEntryDto>>.Success(StatusCodes.Status200OK, dtoList));
+            var dtoList = await _serviceEntryService.GetServiceEntriesByProcedureAsync();
+            return CreateActionResult(RequestResponse<IEnumerable<ServiceEntriesProcedureDto>>.Success(StatusCodes.Status200OK, dtoList));
         }
 
         [HttpPost("AddServiceEntry")]
