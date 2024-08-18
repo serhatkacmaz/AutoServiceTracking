@@ -1,6 +1,6 @@
 # AutoServiceTracking
 
-- Bu scripti çalıştırmak yeterli olucaktır. `db_generate.sql` 
+- Veritabanı için sql script. `db_generate.sql` 
 - Web API sql server için local'e bağlantı atıyor. `Data Source=(localdb)\\MSSQLLocalDB`
 
 
