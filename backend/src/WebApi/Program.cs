@@ -1,10 +1,10 @@
 ﻿using AutoServiceTracking.Shared.Extensions;
 using FluentValidation.AspNetCore;
+using Integrations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Repository;
 using Service;
-using Integrations;
 using Service.Validations;
 using WebApi.Infrastructure.Filters;
 using WebApi.Infrastructure.Middelwares;

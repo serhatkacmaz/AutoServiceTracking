@@ -12,7 +12,7 @@ using Repository.Contexts;
 namespace Repository.Migrations
 {
     [DbContext(typeof(AutoServiceTrackingContext))]
-    [Migration("20240818152821_ver_001")]
+    [Migration("20240818204051_ver_001")]
     partial class ver_001
     {
         /// <inheritdoc />
@@ -107,7 +107,6 @@ namespace Repository.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("LicensePlate")
-                        .IsUnique()
                         .HasDatabaseName("IX_ServiceEntry_LicensePlate");
 
                     b.ToTable("ServiceEntries");
@@ -165,7 +164,7 @@ namespace Repository.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2024, 8, 18, 18, 28, 20, 995, DateTimeKind.Local).AddTicks(5303),
+                            CreatedDate = new DateTime(2024, 8, 18, 23, 40, 51, 344, DateTimeKind.Local).AddTicks(7332),
                             Email = "admin@admin.com",
                             FirstName = "Admin",
                             LastName = "Admin Kaçmaz",

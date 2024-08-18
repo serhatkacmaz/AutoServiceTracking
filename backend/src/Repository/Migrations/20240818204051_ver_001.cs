@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -80,7 +81,7 @@ namespace Repository.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "CreatedBy", "CreatedDate", "Email", "FirstName", "LastName", "Password", "Status", "UpdatedBy", "UpdatedDate" },
-                values: new object[] { 1, null, new DateTime(2024, 8, 18, 18, 28, 20, 995, DateTimeKind.Local).AddTicks(5303), "admin@admin.com", "Admin", "Admin Kaçmaz", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", true, null, null });
+                values: new object[] { 1, null, new DateTime(2024, 8, 18, 23, 40, 51, 344, DateTimeKind.Local).AddTicks(7332), "admin@admin.com", "Admin", "Admin Kaçmaz", "7110eda4d09e062aa5e4a390b0a572ac0d2c0220", true, null, null });
 
             migrationBuilder.CreateIndex(
                 name: "IX_RefreshToken_UserId",
@@ -90,8 +91,7 @@ namespace Repository.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_ServiceEntry_LicensePlate",
                 table: "ServiceEntries",
-                column: "LicensePlate",
-                unique: true);
+                column: "LicensePlate");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",

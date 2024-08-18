@@ -1,9 +1,5 @@
-﻿using AutoMapper;
-using AutoServiceTracking.Shared.Dtos.ServiceEntry;
-using AutoServiceTracking.Shared.Responses;
+﻿using AutoServiceTracking.Shared.Responses;
 using Integrations.CountriesNowRestApi;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
