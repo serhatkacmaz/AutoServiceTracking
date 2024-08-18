@@ -55,9 +55,7 @@ public class AuthTokenService : IAuthTokenService
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Email,user.Email),
-                new Claim(ClaimTypes.Name,user.FirstName),
                 new Claim(JwtRegisteredClaimNames.Jti,Guid.NewGuid().ToString()),
-                new Claim(ClaimTypes.Role, "Admin")
             };
 
         claimList.AddRange(Audiences.Select(x => new Claim(JwtRegisteredClaimNames.Aud, x)));

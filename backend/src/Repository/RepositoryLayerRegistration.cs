@@ -26,7 +26,6 @@ public static class RepositoryLayerRegistration
         services.AddScoped<IServiceEntryRepository, ServiceEntryRepository>();
         services.AddScoped<IRefreshTokenRepository, UserRefreshTokenRepository>();
 
-
         return services;
     }
 }
