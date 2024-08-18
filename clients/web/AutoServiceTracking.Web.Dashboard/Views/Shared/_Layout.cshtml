@@ -36,7 +36,6 @@
         }
 
         .sidebar-header {
-            padding: 15px;
             text-align: center;
             background-color: #0a4d91;
         }
@@ -103,24 +102,26 @@
         }
 
         .footer {
-            padding: 10px;
             background-color: white;
             color: black;
             text-align: center;
             border-top: 1px solid #dee2e6;
         }
     </style>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
     <div class="dashboard-container">
         <!-- Sidebar -->
         <nav class="sidebar">
             <div class="sidebar-header">
-                <h1>Araç Servis Takip</h1>
+                <h1>AST</h1>
             </div>
             <ul class="sidebar-menu">
-                <li><a href="#">Servis Ekle</a></li>
-                <li><a href="#">Servis Listele</a></li>
+                <li><a href="/Home/Index">Ana Sayfa</a></li>
+                <li><a href="#">Servis Girişi</a></li>
+                <li><a href="/ServiceEntry/Index">Servis Geçmişi</a></li>
             </ul>
         </nav>
 
@@ -129,7 +130,9 @@
             <header class="topbar">
                 <h1>@ViewData["Title"]</h1>
                 <div class="user-info">
-                    <a href="#">Logout</a>
+                    <form action="/Auth/Logout" method="post">
+                        <button type="submit">Çıkış Yap</button>
+                    </form>
                 </div>
             </header>
 
