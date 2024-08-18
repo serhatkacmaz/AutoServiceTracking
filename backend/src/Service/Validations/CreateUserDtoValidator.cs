@@ -1,25 +1,14 @@
-﻿using AutoServiceTracking.Shared.Dtos.ServiceEntry;
+﻿using AutoServiceTracking.Shared.Dtos.User;
 using FluentValidation;
 
 namespace Service.Validations;
 
-public class CreateUserDtoValidator : AbstractValidator<CreateServiceEntryDto>
+public class CreateUserDtoValidator : AbstractValidator<CreateUserDto>
 {
     public CreateUserDtoValidator()
     {
-        RuleFor(c => c.LicensePlate)
-           .NotEmpty().WithMessage("LicensePlate is required.");
-
-        RuleFor(c => c.BrandName)
-           .NotEmpty().WithMessage("BrandName is required.");
-
-        RuleFor(c => c.ModelName)
-           .NotEmpty().WithMessage("ModelName is required.");
-
-        RuleFor(c => c.Kilometers)
-           .NotNull().WithMessage("Kilometers is required.");
-
-        RuleFor(c => c.ServiceDate)
-           .NotNull().WithMessage("ServiceDate is required.");
+        RuleFor(c => c.Email)
+           .NotEmpty().WithMessage("Email is required.")
+           .EmailAddress().WithMessage("Invalid email format.");
     }
 }

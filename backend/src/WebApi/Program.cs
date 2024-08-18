@@ -1,10 +1,5 @@
-﻿using Autofac.Core;
-using AutoServiceTracking.Shared.Extensions;
-using AutoServiceTracking.Shared.Security.Jwt;
-using AutoServiceTracking.Shared.Settings;
-using Azure.Core;
+﻿using AutoServiceTracking.Shared.Extensions;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Repository;
