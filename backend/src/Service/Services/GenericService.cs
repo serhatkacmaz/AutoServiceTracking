@@ -1,4 +1,5 @@
-﻿using Core.Entities.Base;
+﻿using AutoServiceTracking.Shared.Security.Xss;
+using Core.Entities.Base;
 using Core.Ioc.Repositories;
 using Core.Ioc.Services;
 using Core.Ioc.UnitOfWorks;
@@ -38,6 +39,8 @@ public class GenericService<TEntity, TEntityId> : IGenericService<TEntity, TEnti
 
     public async Task<TEntity> AddAsync(TEntity newEntity)
     {
+        XssHelper.ContainsJavaScriptProperties(newEntity);
+
         await _repository.AddAsync(newEntity);
         await _unitOfWork.CommitAsync();
 
@@ -46,6 +49,9 @@ public class GenericService<TEntity, TEntityId> : IGenericService<TEntity, TEnti
 
     public async Task<IEnumerable<TEntity>> AddRangeAsync(IEnumerable<TEntity> newEntities)
     {
+        foreach (TEntity entity in newEntities)
+            XssHelper.ContainsJavaScriptProperties(entity);
+
         await _repository.AddRangeAsync(newEntities);
         await _unitOfWork.CommitAsync();
 
@@ -54,6 +60,8 @@ public class GenericService<TEntity, TEntityId> : IGenericService<TEntity, TEnti
 
     public async Task UpdateAsync(TEntity entity)
     {
+        XssHelper.ContainsJavaScriptProperties(entity);
+
         _repository.Update(entity);
         await _unitOfWork.CommitAsync();
     }
